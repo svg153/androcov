@@ -1,0 +1,44 @@
+buildscript {
+    repositories {
+        jcenter()
+    }
+    dependencies {
+        classpath 'com.github.jengelman.gradle.plugins:shadow:2.0.2'
+    }
+}
+
+apply plugin: 'com.github.johnrengelman.shadow'
+apply plugin: 'java'
+apply plugin: 'maven'
+
+group = 'ylimit'
+version = '1.0'
+
+description = """"""
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+tasks.withType(JavaCompile) {
+	options.encoding = 'UTF-8'
+}
+
+jar {
+    manifest {
+        attributes 'Main-Class': "xyz.ylimit.androcov.Main"
+    }
+}
+
+repositories {
+    mavenCentral()
+    maven {url " htpp://jitpack.io"}
+    maven {url "https://soot-build.cs.uni-paderborn.de/nexus/repository/soot-release/"}
+    maven {url "https://soot-build.cs.uni-paderborn.de/nexus/repository/soot-snapshot/"}
+}
+
+dependencies {
+    compile "ca.mcgill.sable:soot:3.0.0-SNAPSHOT"
+
+    compile 'org.json:json:20140107'
+    compile group: 'commons-cli', name: 'commons-cli', version: '1.4'
+    compile group: 'commons-io', name: 'commons-io', version: '2.5'
+}
